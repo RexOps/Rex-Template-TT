@@ -4,7 +4,7 @@
 # vim: set ts=2 sw=2 tw=0:
 # vim: set expandtab:
 
-package Rex::Ext::TemplateToolkit;
+package Rex::Template::TT;
 
 use Rex -base;
 use Rex::Helper::Path;
@@ -22,14 +22,14 @@ sub validate_vars {
 
   foreach my $key (keys %$vars) {
       if ($key ~= /^[\._]/) {
-	  Rex::Logger::info( "variable name '$key' considered private by Template Toolkit",
-			     "warn" );
+          Rex::Logger::info( "variable name '$key' considered private by Template Toolkit",
+                             "warn" );
       } elsif ($key ~= /([^a-zA-Z0-9_])/) {
-	  Rex::Logger::info( "variable name '$key' contains '$1' unsupported by Template Toolkit",
-			     "warn" );
+          Rex::Logger::info( "variable name '$key' contains '$1' unsupported by Template Toolkit",
+                             "warn" );
       } elsif ($key ~= /^(GET|CALL|SET|DEFAULT|INSERT|INCLUDE|PROCESS|WRAPPER|IF|UNLESS|ELSE|ELSIF|FOR|FOREACH|WHILE|SWITCH|CASE|USE|PLUGIN|FILTER|MACRO|PERL|RAWPERL|BLOCK|META|TRY|THROW|CATCH|FINAL|NEXT|LAST|BREAK|RETURN|STOP|CLEAR|TO|STEP|AND|OR|NOT|MOD|DIV|END)$/) {
-	  Rex::Logger::info( "variable name '$key' clashes with reserved Template Toolkit word",
-			     "warn" );
+          Rex::Logger::info( "variable name '$key' clashes with reserved Template Toolkit word",
+                             "warn" );
       }
   }
 }
@@ -62,7 +62,7 @@ sub import {
     # register Template::Toolkit for default template processing
     set template_function => sub {
       my ( $content, $vars ) = @_;
-      
+
       validate_vars( $vars );
 
       my $template = Template->new;
@@ -84,17 +84,18 @@ sub import {
 
 =head1 NAME
 
-Rex::Ext::TemplateToolkit - A module to process templates with template toolkit.
+Rex::Template::TT - A module to process templates with template toolkit.
 
 see http://www.template-toolkit.org/
 
 =head1 SYNOPSIS
 
- use Rex::Ext::TemplateToolkit;
+ use Rex::Template::TT;
 
  task "blah", sub {
    file "/tmp/blah",
-        content    => template_toolkit("path/to/blah.template", { persons => ['bob', 'alice'] }),
+        content    => template("path/to/blah.template",
+                                       { persons => ['bob', 'alice'] }),
         owner     => "root",
         group     => "root",
         mode      => 644
@@ -105,5 +106,35 @@ see http://www.template-toolkit.org/
  # all the templates. This will also register all the known template variables
  # like hostname, eth0_ip and so on.
  use Rex::Ext::TemplateTookkit ':register';
+
+
+=head1 AUTHORS
+
+This module in its current publication is written by Nicolas Leclerq, based
+on prior work by Jan Gehring. The original version by Nicolas was published
+through the now-defunct I<Rex Recipes>. Since Nicolas's version ended up
+being more feature-rich than Jan's, Jan gave permission to overwrite his
+version with Nicolas's.
+
+=over
+
+=item * Nicolas Leclercq <nicolas.private@gmail.com>
+
+=item * Jan Gehring <krimdomu@googlemail.com>
+
+=back
+
+=head1 CONTRIBUTORS
+
+=over
+
+=item * Erik Huelsmann <ehuels@gmail.com>
+
+=back
+
+=head1 LICENSE
+
+The Apache License, Version 2.0, January 2004
+
 
 =cut

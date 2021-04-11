@@ -1,0 +1,7 @@
+
+1.0.0   To be released
+   [Changed]
+     - Ported module Rex::Ext::TemplateToolkit from rex-recipes to CPAN
+       and renamed it to Rex::Template::TT (overwriting the original, less
+       feature-rich version by Jan Gehring -- with his permission)
+
