@@ -46,9 +46,16 @@ sub template_toolkit {
 
   # process template
   my $output = '';
-  my $template = Template->new( { ABSOLUTE => 1 } );
+  my $template = Template->new( { ABSOLUTE => 1 } )
+    or do {
+      Rex::Logger::info( $Template::ERROR, 'error' );
+      die $Template::ERROR;
+    };
   $template->process( $template_path, $vars, \$output )
-    || Rex::Logger::info( $template->error(), 'error' );
+    or do {
+      Rex::Logger::info( $template->error(), 'error' );
+      die $template->error();
+    };
 
   return $output;
 }
@@ -65,11 +72,17 @@ sub import {
 
       validate_vars( $vars );
 
-      my $template = Template->new;
-
+      my $template = Template->new()
+        or do {
+          Rex::Logger::info( $Template::ERROR, 'error' );
+          die $Template::ERROR;
+        };
       my $output;
       $template->process( \$content, $vars, \$output )
-        || Rex::Logger::info( $template->error(), 'error' );
+        or do {
+          Rex::Logger::info( $template->error(), 'error' );
+          die $template->error();
+        };
 
       return $output;
     };
