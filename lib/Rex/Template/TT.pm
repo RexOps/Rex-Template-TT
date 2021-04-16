@@ -21,13 +21,13 @@ sub validate_vars {
   my ( $vars ) = @_;
 
   foreach my $key (keys %$vars) {
-      if ($key ~= /^[\._]/) {
+      if ($key =~ /^[\._]/) {
           Rex::Logger::info( "variable name '$key' considered private by Template Toolkit",
                              "warn" );
-      } elsif ($key ~= /([^a-zA-Z0-9_])/) {
+      } elsif ($key =~ /([^a-zA-Z0-9_])/) {
           Rex::Logger::info( "variable name '$key' contains '$1' unsupported by Template Toolkit",
                              "warn" );
-      } elsif ($key ~= /^(GET|CALL|SET|DEFAULT|INSERT|INCLUDE|PROCESS|WRAPPER|IF|UNLESS|ELSE|ELSIF|FOR|FOREACH|WHILE|SWITCH|CASE|USE|PLUGIN|FILTER|MACRO|PERL|RAWPERL|BLOCK|META|TRY|THROW|CATCH|FINAL|NEXT|LAST|BREAK|RETURN|STOP|CLEAR|TO|STEP|AND|OR|NOT|MOD|DIV|END)$/) {
+      } elsif ($key =~ /^(GET|CALL|SET|DEFAULT|INSERT|INCLUDE|PROCESS|WRAPPER|IF|UNLESS|ELSE|ELSIF|FOR|FOREACH|WHILE|SWITCH|CASE|USE|PLUGIN|FILTER|MACRO|PERL|RAWPERL|BLOCK|META|TRY|THROW|CATCH|FINAL|NEXT|LAST|BREAK|RETURN|STOP|CLEAR|TO|STEP|AND|OR|NOT|MOD|DIV|END)$/) {
           Rex::Logger::info( "variable name '$key' clashes with reserved Template Toolkit word",
                              "warn" );
       }
