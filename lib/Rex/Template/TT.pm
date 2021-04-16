@@ -39,10 +39,12 @@ sub template_toolkit {
 
   validate_vars( $vars );
 
-  # resolv template path
-  $template_path = Rex::Helper::Path::resolv_path($template_path);
-  $template_path = Rex::Helper::Path::get_file_path( $template_path, caller() );
-  Rex::Logger::debug("Processing template file : $template_path");
+  if ( not ( ref $template_path and ref $template_path eq 'SCALAR') ) {
+      # resolv template path
+      $template_path = Rex::Helper::Path::resolv_path($template_path);
+      $template_path = Rex::Helper::Path::get_file_path( $template_path, caller() );
+      Rex::Logger::debug("Processing template file : $template_path");
+  }
 
   # process template
   my $output = '';
