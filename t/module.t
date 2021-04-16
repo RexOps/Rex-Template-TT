@@ -31,6 +31,20 @@ is( template( \$template, { name => 'world' } ), 'Hello, [% name %]!');
     is( template( $f->filename, { name => 'world' } ), 'Hello, [% name %]!');
 }
 
+# This code does not throw an exception: it warns using Rex::Logger::info
+# so we need to mock that to check for the expected error!
+#
+#for my $key in qw(GET CALL SET DEFAULT INSERT INCLUDE PROCESS WRAPPER IF UNLESS
+#    ELSE ELSIF FOR FOREACH WHILE SWITCH CASE USE PLUGIN FILTER MACRO PERL
+#    RAWPERL BLOCK META TRY THROW CATCH FINAL NEXT LAST BREAK RETURN STOP CLEAR
+#    TO STEP AND OR NOT MOD DIV END) {
+#    like(
+#        dies { template_toolkit( \$template, { $key => 1 } ) },
+#        qr/.../,
+#        'Using a TT keyword as a variable fails'
+#        );
+#}
+
 
 done_testing;
 
