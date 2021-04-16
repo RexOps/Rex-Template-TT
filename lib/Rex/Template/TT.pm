@@ -101,8 +101,6 @@ sub import {
 
 Rex::Template::TT - A module to process templates with template toolkit.
 
-see http://www.template-toolkit.org/
-
 =head1 SYNOPSIS
 
  use Rex::Template::TT;
@@ -122,6 +120,10 @@ see http://www.template-toolkit.org/
  # like hostname, eth0_ip and so on.
  use Rex::Ext::TemplateTookkit ':register';
 
+
+=head1 DESCRIPTION
+
+A Rex extension module to process templates with template toolkit.
 
 =head1 AUTHORS
 
@@ -144,6 +146,18 @@ version with Nicolas's.
 =over
 
 =item * Erik Huelsmann <ehuels@gmail.com>
+
+=back
+
+=head1 SEE ALSO
+
+=over
+
+=item * L<Template>
+
+=item * L<Rex>
+
+=item * L<http://www.template-toolkit.org/>
 
 =back
 
