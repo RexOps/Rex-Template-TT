@@ -30,9 +30,9 @@ jobs:
       - name: Log perl version
         run: perl -V
       - name: Install Dist::Zilla
-        run: cpanm Dist::Zilla
+        run: cpm install -g Dist::Zilla
       - name: Install author dependencies
-        run: dzil authordeps | cpanm
+        run: dzil authordeps | cpm install -g -
       - name: Install dependencies
         run: dzil listdeps --develop | cpanm
       - name: Build dist
