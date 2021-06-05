@@ -4,7 +4,7 @@ Rex::Template::TT - A module to process templates with template toolkit.
 
 # VERSION
 
-version 0.33.1.2
+version 1.0.0
 
 # SYNOPSIS
 

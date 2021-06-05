@@ -1,5 +1,5 @@
 
-1.0.0   To be released
+1.0.0   2021-06-05
    [Changed]
      - Ported module Rex::Ext::TemplateToolkit from rex-recipes to CPAN
        and renamed it to Rex::Template::TT (overwriting the original, less

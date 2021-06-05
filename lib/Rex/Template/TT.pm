@@ -122,7 +122,7 @@ Rex::Template::TT - A module to process templates with template toolkit.
  # this will make the template() function use TemplateTookit to render
  # all the templates. This will also register all the known template variables
  # like hostname, eth0_ip and so on.
- use Rex::Ext::TemplateTookkit ':register';
+ use Rex::Template::TT ':register';
 
 
 =head1 DESCRIPTION
