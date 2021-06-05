@@ -1,6 +1,8 @@
 
+requires 'perl' => '5.10.0';
+
 requires 'Rex'; # TT: 'use Rex -base;'
-requires "Rex::Helper::Path";
+requires 'Rex::Helper::Path';
 requires 'Template';
 
 on 'test' => sub {
