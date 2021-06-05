@@ -1,5 +1,6 @@
 
-
+requires 'Rex'; # TT: 'use Rex -base;'
+requires "Rex::Helper::Path";
 requires 'Template';
 
 on 'test' => sub {

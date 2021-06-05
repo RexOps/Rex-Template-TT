@@ -6,6 +6,10 @@
 
 package Rex::Template::TT;
 
+
+use strict;
+use warnings;
+
 use Rex -base;
 use Rex::Helper::Path;
 use Template;
